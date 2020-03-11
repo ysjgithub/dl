@@ -28,7 +28,7 @@ def get_w(_lambdas, Xs, Ys):
     w = np.dot(Xs,_lambdasy).T
     return w
 
-def simple_smo(Xs, Ys, C, max_iter):
+def SMO(Xs, Ys, C, max_iter):
     '''
     :param Xs: 特征向量的值
     :param Ys: 所有的特征向量的标签
@@ -110,9 +110,7 @@ def simple_smo(Xs, Ys, C, max_iter):
 Xs, Ys = [[1,2],[2,3],[3,4],[4,5],[5,6],[1,1],[2,2],[3,3],[4,4],[5,5]],[-1,-1,-1,-1,-1,1,1,1,1,1]
 lambda_s=np.zeros((10,1))
 
-# 使用简化版SMO算法优化SVM
-lambda_s, b = simple_smo(Xs, Ys, 10, 40)
-# 分类数据点
+lambda_s, b = SMO(Xs, Ys, 10, 40)
 
 # 绘制数据点
 plt.plot(np.array(Xs).T[0], np.array(Xs).T[1], 'ro')
