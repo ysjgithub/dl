@@ -43,13 +43,15 @@ def vision(points,w,b=0):
         else:
             plt.scatter(points.T[0,i], points.T[1,i], marker='o',c='red')
     plt.plot(x, y, '-r', label='wx+b=0')
-    plt.axis([-1,-10, -1, 10])
-    plt.show()
+    plt.axis([-1,10, -1, 10])
+    plt.draw()
+    plt.pause(0.2)
+    plt.clf()
 
-    import time
-    time.sleep(0.8)
 
 import matplotlib.pyplot as plt
+plt.figure()
+plt.ion()
 points,labels=gen_data()
 w_hat = init_para()
 vision(points,w_hat,b=0)
