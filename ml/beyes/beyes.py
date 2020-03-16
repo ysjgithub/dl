@@ -31,9 +31,9 @@ class attrP(object):
                 return labels
 
 
-class NaiveBeyes(object):
+class Beyes(object):
     def __init__(self,dataSet,_lambda=0):
-        super(NaiveBeyes).__init__()
+        super(Beyes).__init__()
         self._lambda = _lambda
         self.P = []
         self.ycalcP = []
@@ -95,7 +95,7 @@ dataSet = [
 ]
 
 dataSet = pd.DataFrame(dataSet)
-model = NaiveBeyes(dataSet,1)
+model = Beyes(dataSet,1)
 model.predict([2,s])
 
 
