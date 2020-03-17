@@ -1,11 +1,16 @@
 import  numpy as np
 
+
 def gen_data(nums,dim):
     dataSet = []
-    for i in range(nums):
-        dataSet.append((np.array([np.random.randint(0,10) for j in range(dim)]),np.random.randint(0,2)))
-
+    for i in range(50):
+        p = [0,0]
+        while p[0]==p[1]:
+            p = [np.random.randint(0,10) for _ in range(dim)]
+        dataSet.append(( np.array(p),0 if p[0]-p[1]<0 else 1 ))
     return dataSet
+
+
 class logistic(object):
 
     def __init__(self,dataSet):
