@@ -81,7 +81,8 @@ class ResNet(nn.Module):
             self.layer(block, 512, num_layers[3], 2),
             nn.AvgPool2d(2),
             nn.Flatten(),
-            nn.Linear(512,num_classes)
+            nn.Linear(512,num_classes),
+            nn.Softmax()
         )
 
     def layer(self, block, out_channel, num_blocks, stride):
@@ -103,3 +104,5 @@ print(device)
 
 net = ResNet([3,4,6,3],ResBlock, 10).to(device)
 summary(net, (3, 32, 32))
+
+

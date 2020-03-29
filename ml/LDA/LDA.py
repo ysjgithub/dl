@@ -49,8 +49,8 @@ plt.ion()
 points,labels=gen_data()
 lda = LDA(points,labels,3)
 lda.solve()
-# w_hat = init_para()
-# vision(points,w_hat,b=0)
+w_hat = init_para()
+vision(points,w_hat,b=-10)
 
 
 

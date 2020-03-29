@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec6e7965-684e-442c-abb8-1c98c67dd443" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ml/LDA/LDA.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/sparsecode.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/LDA/LDA.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/LDA/LDA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/ResNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/ResNet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/VGG.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/VGG.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,17 +29,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ml/perceptron/perceptron.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="555">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ml/LDA/LDA.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ml/LDA/LDA.py">
+        <entry file="file://$PROJECT_DIR$/ml/sparsecode.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+            <state relative-caret-position="1230">
+              <caret line="82" selection-start-line="82" selection-end-line="82" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/ResNet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1620">
+              <caret line="108" selection-start-line="108" selection-end-line="108" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/VGG.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1590">
+              <caret line="111" column="14" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,8 +116,6 @@
       <list>
         <option value="$PROJECT_DIR$/Resnet.py" />
         <option value="$PROJECT_DIR$/vgg/vgg.py" />
-        <option value="$PROJECT_DIR$/model/VGG.py" />
-        <option value="$PROJECT_DIR$/model/ResNet.py" />
         <option value="$PROJECT_DIR$/ml/svm.md" />
         <option value="$PROJECT_DIR$/ml/svm.py" />
         <option value="$PROJECT_DIR$/ml/perception/perception.py" />
@@ -79,7 +126,11 @@
         <option value="$PROJECT_DIR$/ml/beyes/naivebeyes.py" />
         <option value="$PROJECT_DIR$/ml/beyes/beyes.py" />
         <option value="$PROJECT_DIR$/ml/logisticregerssion/logistic.py" />
+        <option value="$PROJECT_DIR$/model/VGG.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/model/ResNet.py" />
         <option value="$PROJECT_DIR$/ml/LDA/LDA.py" />
+        <option value="$PROJECT_DIR$/model/稀疏自编码.py" />
       </list>
     </option>
   </component>
@@ -95,7 +146,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -108,10 +158,16 @@
               <item name="dl" type="462c0819:PsiDirectoryNode" />
               <item name="ml" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="dl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dl" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -132,6 +188,7 @@
       <recent name="https://github.com/coin-dataset/annotations.git" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ml" />
       <recent name="$PROJECT_DIR$/ml/svm" />
     </key>
   </component>
@@ -148,28 +205,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.LDA">
-    <configuration name="KNN" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="dl" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/KNN" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/KNN/KNN.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="LDA" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="dl" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -184,6 +219,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/LDA/LDA.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="VGG" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="dl" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/VGG.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -261,10 +318,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.LDA" />
+        <item itemvalue="Python.VGG" />
         <item itemvalue="Python.logistic" />
         <item itemvalue="Python.naivebeyes" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.KNN" />
       </list>
     </recent_temporary>
   </component>
@@ -292,7 +349,16 @@
       <workItem from="1584243919932" duration="285000" />
       <workItem from="1584331013226" duration="9986000" />
       <workItem from="1584446125315" duration="6799000" />
-      <workItem from="1584525057346" duration="410000" />
+      <workItem from="1584525057346" duration="555000" />
+      <workItem from="1584602296605" duration="170000" />
+      <workItem from="1584614275131" duration="21000" />
+      <workItem from="1585102945020" duration="583000" />
+      <workItem from="1585141700670" duration="207000" />
+      <workItem from="1585220526669" duration="203000" />
+      <workItem from="1585284305937" duration="1011000" />
+      <workItem from="1585305904276" duration="441000" />
+      <workItem from="1585320661384" duration="619000" />
+      <workItem from="1585493287479" duration="716000" />
     </task>
     <task id="LOCAL-00001" summary="vgg and resnet">
       <created>1583750306955</created>
@@ -371,22 +437,28 @@
       <option name="project" value="LOCAL" />
       <updated>1584453431654</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="LDA-code">
+      <created>1584538431540</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1584538431541</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58636000" />
+    <option name="totallyTimeSpent" value="62752000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17525035" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19527897" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32963988" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24819277" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24819277" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39638555" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -400,7 +472,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.3397711" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.3397711" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
@@ -465,13 +537,14 @@
     <MESSAGE value="KNN-code" />
     <MESSAGE value="beyes-code" />
     <MESSAGE value="logistic-code" />
-    <option name="LAST_COMMIT_MESSAGE" value="logistic-code" />
+    <MESSAGE value="LDA-code" />
+    <option name="LAST_COMMIT_MESSAGE" value="LDA-code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dl$vgg.coverage" NAME="vgg Coverage Results" MODIFIED="1583494633789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/vgg" />
     <SUITE FILE_PATH="coverage/dl$test.coverage" NAME="test Coverage Results" MODIFIED="1584342458129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/beyes" />
     <SUITE FILE_PATH="coverage/dl$KNN.coverage" NAME="KNN Coverage Results" MODIFIED="1584338216940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/KNN" />
-    <SUITE FILE_PATH="coverage/dl$LDA.coverage" NAME="LDA Coverage Results" MODIFIED="1584525362117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/LDA" />
+    <SUITE FILE_PATH="coverage/dl$LDA.coverage" NAME="LDA Coverage Results" MODIFIED="1585493491102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/LDA" />
     <SUITE FILE_PATH="coverage/dl$svm.coverage" NAME="svm Coverage Results" MODIFIED="1583922438893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml" />
     <SUITE FILE_PATH="coverage/dl$perception.coverage" NAME="perception Coverage Results" MODIFIED="1584003160926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/perception" />
     <SUITE FILE_PATH="coverage/dl$download.coverage" NAME="download Coverage Results" MODIFIED="1584081597633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/coin" />
@@ -480,7 +553,7 @@
     <SUITE FILE_PATH="coverage/dl$perceptron.coverage" NAME="perceptron Coverage Results" MODIFIED="1584005739580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/perceptron" />
     <SUITE FILE_PATH="coverage/dl$Resnet.coverage" NAME="Resnet Coverage Results" MODIFIED="1583480163291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/dl$naivebeyes.coverage" NAME="naivebeyes Coverage Results" MODIFIED="1584347660508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/beyes" />
-    <SUITE FILE_PATH="coverage/dl$VGG.coverage" NAME="VGG Coverage Results" MODIFIED="1583749463459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/dl$VGG.coverage" NAME="VGG Coverage Results" MODIFIED="1585285436110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///usr/local/lib/python3.7/site-packages/torch/nn/modules/conv.py">
@@ -509,26 +582,6 @@
             <caret line="139" column="20" selection-start-line="139" selection-start-column="20" selection-end-line="139" selection-end-column="20" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/ResNet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="95" column="32" lean-forward="true" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/VGG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -602,15 +655,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ml/perceptron/perceptron.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="555">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/VGG.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1590">
+          <caret line="111" column="14" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ResNet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ml/LDA/LDA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+        <state relative-caret-position="262">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml/sparsecode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

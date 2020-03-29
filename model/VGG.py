@@ -109,5 +109,5 @@ class VGG19(nn.Module):
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = VGG11(lrn=True).to(device)
+model = VGG19().to(device)
 summary(model,(3,32,32))
