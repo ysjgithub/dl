@@ -53,7 +53,7 @@ def train(trainData, weight, biases, beta, hat, eta):
 o,n  = 14,28
 (trainImage, trainTarget), (testImage, testTarget) = mnist
 
-initTrain = trainImage[0:10000].astype(np.float64).reshape(10000,784)*0.99/255
+initTrain = trainImage[0:1000].astype(np.float64).reshape(1000,784)*0.99/255
 
 weight = [np.random.randn(x,y)/np.sqrt(y) for x,y in zip([196,784],[784,196])]
 biases = [np.zeros(x) for x in [196,784]]
