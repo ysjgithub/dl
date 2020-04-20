@@ -61,14 +61,15 @@ class ResNet(nn.Module):
         )
 
         self.res = nn.Sequential(
-            self.layer(block, 256, num_layers[0], 1),
+            self.layer(block, 256, num_layers[0], 2),
             self.layer(block, 512, num_layers[1], 2),
             self.layer(block, 1024, num_layers[2], 2),
             self.layer(block, 2048, num_layers[3], 2),
-            nn.AvgPool3d((1,4,4)),
+            nn.AvgPool3d((1,2,2)),
             nn.Flatten(),
+            nn.Linear(2048, 2048),
             nn.Linear(2048,num_classes),
-            # nn.Softmax()
+            nn.Softmax()
         )
 
     def layer(self, block, out_channel, num_blocks, stride):
