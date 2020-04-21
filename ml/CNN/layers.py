@@ -71,11 +71,8 @@ class Conv(object):
             # 遍历特征图，找到每个特征图产生误差的地方
             for idf in range(len(img)):
                 feature = img[idf,:,:]
-                print(feature.shape)
                 cores = self.core[idf,:,:,:]
-                print(cores.shape)
                 featuremap = np.zeros((3,10, 10))
-
                 for idc in range(len(cores)):
                     newcore = cores[idc,:,:].T[::-1].T[::-1]
                     for i in range(0, w + 2 * self.padding - self.kernel, self.stride):
@@ -84,7 +81,7 @@ class Conv(object):
                     # 得到特征图加到误差点上
                 print(featuremap.shape)
                 self.gradient[idx,:,self.padding:-self.padding,self.padding:-self.padding]+=featuremap
-        #输出大小为input_maps
+        #输出大小为input_maps,去掉padding
 
 class activition(object):
     def __init__(self):
@@ -173,6 +170,24 @@ class Flattan(object):
     def backword(self,y):
         self.gradient = y.reshape(self.input_maps.shape)
 
+class FC(object):
+    def __init__(self,input_nums,output_nums,bias=False):
+        self.biases = np.random.rand((1,output_nums)) if bias else np.zeros((1,output_nums))
+        self.weights = np.random.randn(input_nums, output_nums) #250 * 30
+        self.output_maps =None
+        self.gradient =None
+    def forword(self,x):
+        #128 * 250
+        self.input_maps= x
+        self.output_maps = np.dot(self.weights,x)+self.biases
+
+    def update(self,y):
+        self.weights-=0.3*np.dot(self.input_maps,y.T)
+
+    def backword(self,y):
+        # y 128 * 30
+        self.update(y)
+        self.gradient = np.dot(y,self.weights.T)
 
 class softMax(object):
     def __init__(self):
