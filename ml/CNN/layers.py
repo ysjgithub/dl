@@ -10,13 +10,17 @@ class Conv(object):
         self.padding=padding
         self.output_map=[]
         self.core = np.array([np.random.randn(3,kernel,kernel) for _ in range(output_channel)])
-
+        self.gradient =None
+        self.input_maps = None
+        self.delta = None
     def forword(self,x):
         # 输入为 128 * 3 * 10 *10
-        mini_batch,c,w,h = x.shape
         if self.padding != 0:
             x = np.pad(x, ((0, 0), (0, 0), (self.padding, self.padding), (self.padding, self.padding)), 'constant')
-        neww,newh = int(w-self.kernel+2*self.padding)/self.stride+1,(h-self.kernel+2*self.padding)/self.stride+1
+        self.input_maps = x
+        self.delta = np.zeros(x.shape)
+        mini_batch,c,w,h = x.shape
+        neww,newh = int((w-self.kernel)/self.stride+1),int((h-self.kernel)/self.stride+1)
         #图片
         for img in x:
             #卷积核
@@ -25,19 +29,62 @@ class Conv(object):
                 #卷积核对应一张特征图
                 featuremap = np.zeros((int(neww),int(newh)))
                 #遍历一张维度
-                for i in range(0,w+2*self.padding-self.kernel,self.stride):
-                    for j in range(0,h+2*self.padding-self.kernel,self.stride):
+                print(img.shape,neww,newh)
+                for i in range(0,neww):
+                    for j in range(0,newh):
                         featuremap[int(i/self.stride),int(j/self.stride)] = np.sum(img[:,i:i+self.kernel,j:j+self.kernel]*core)
                 features.append(featuremap)
             self.output_map.append(np.array(features))
         self.output_map = np.array(self.output_map)
         #输出为128 * output_channel * 10 *10
+    def update(self,y):
+        for idc in range(len(self.core)):
+            #更新一个核,core 3*3*3
+            core = self.core[idc,:,:,:]
+            # 这一批所有的梯度加起来 3*3*3
+            deltacore = np.zeros(core.shape)
+
+            for idf in range(len(y)):
+                # features 10*10*10
+                features = y[idf,:,:,:]
+                for feature in features:
+                    # feature 10 * 10
+                    for i in range(3):
+                        for j in range(3):
+                            for seq in range(self.input_channel):
+                                deltacore[seq,i,j] += np.sum(self.input_maps[idf,seq,i:i + 10, j:j + 10] * feature)
+            deltacore=deltacore/len(y)
+            self.core[idc,:,:,:]-=deltacore*0.3
 
     def backword(self,y):
         # 输入为 output_maps，更新core的
+        # 输入为 128 * 10 * 10 *10
+        self.update(y)
+        mini_batch, c, w, h = y.shape
 
-        pass
-        #输出为input_maps
+        if self.padding != 0:
+            y = np.pad(y, ((0, 0), (0, 0), (self.padding, self.padding), (self.padding, self.padding)), 'constant')
+        self.gradient = np.zeros(self.input_maps.shape)
+        # 图片
+        for idx in range(mini_batch):
+            img = y[idx,:,:,:] #每一张图片的特征图
+            # 遍历特征图，找到每个特征图产生误差的地方
+            for idf in range(len(img)):
+                feature = img[idf,:,:]
+                print(feature.shape)
+                cores = self.core[idf,:,:,:]
+                print(cores.shape)
+                featuremap = np.zeros((3,10, 10))
+
+                for idc in range(len(cores)):
+                    newcore = cores[idc,:,:].T[::-1].T[::-1]
+                    for i in range(0, w + 2 * self.padding - self.kernel, self.stride):
+                        for j in range(0, h + 2 * self.padding - self.kernel, self.stride):
+                            featuremap[idc,int(i / self.stride), int(j / self.stride)] = np.sum(img[:, i:i + self.kernel, j:j + self.kernel] * newcore)
+                    # 得到特征图加到误差点上
+                print(featuremap.shape)
+                self.gradient[idx,:,self.padding:-self.padding,self.padding:-self.padding]+=featuremap
+        #输出大小为input_maps
 
 class activition(object):
     def __init__(self):
@@ -167,5 +214,7 @@ sm.backword(r)
 print(sm.gradient.shape)
 f1.backword(sm.gradient)
 pool1.backword(f1.gradient)
+print(pool1.gradient.shape)
+model.backword(pool1.gradient)
 
 

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec6e7965-684e-442c-abb8-1c98c67dd443" name="Default Changelist" comment="p3d">
-      <change afterPath="$PROJECT_DIR$/ml/CNN/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml/CNN/layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/CNN/layers.py" afterDir="false" />
     </list>
@@ -59,17 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ml/CNN/layers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ml/CNN/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="110">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
             </state>
           </provider>
         </entry>
@@ -170,7 +160,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -186,12 +175,19 @@
             <path>
               <item name="dl" type="b2602c69:ProjectViewProjectNode" />
               <item name="dl" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+              <item name="CNN" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dl" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -277,9 +273,6 @@
       <module name="dl" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/CNN" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -288,7 +281,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/CNN/layers.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -339,6 +332,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.layers" />
+      <item itemvalue="Python.LDA" />
+      <item itemvalue="Python.pseudo3D" />
+      <item itemvalue="Python.sparsecode" />
+      <item itemvalue="Python.VGG" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.layers" />
@@ -390,7 +390,9 @@
       <workItem from="1587176921061" duration="12000" />
       <workItem from="1587360462787" duration="4490000" />
       <workItem from="1587387204625" duration="67000" />
-      <workItem from="1587387375968" duration="2904000" />
+      <workItem from="1587387375968" duration="3191000" />
+      <workItem from="1587440460489" duration="5322000" />
+      <workItem from="1587464596433" duration="5957000" />
     </task>
     <task id="LOCAL-00001" summary="vgg and resnet">
       <created>1583750306955</created>
@@ -497,22 +499,43 @@
       <option name="project" value="LOCAL" />
       <updated>1587366849849</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="flatten Maxpooling foeword">
+      <created>1587390883232</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1587390883232</updated>
+    </task>
+    <task id="LOCAL-00017" summary="conv maxpooling mini_batch">
+      <created>1587443724417</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1587443724417</updated>
+    </task>
+    <task id="LOCAL-00018" summary="softmax,flatten,maxpooling gradient">
+      <created>1587448474606</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1587448474606</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75535000" />
+    <option name="totallyTimeSpent" value="87101000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14449213" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14878398" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32963988" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49928468" visible="true" weight="0.24819277" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.24819277" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39638555" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -522,7 +545,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.24819277" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.29156625" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.2939759" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -596,12 +619,15 @@
     <MESSAGE value="sparsecode" />
     <MESSAGE value="p3d" />
     <MESSAGE value="conv layer+p3d" />
-    <option name="LAST_COMMIT_MESSAGE" value="conv layer+p3d" />
+    <MESSAGE value="flatten Maxpooling foeword" />
+    <MESSAGE value="conv maxpooling mini_batch" />
+    <MESSAGE value="softmax,flatten,maxpooling gradient" />
+    <option name="LAST_COMMIT_MESSAGE" value="softmax,flatten,maxpooling gradient" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dl$vgg.coverage" NAME="vgg Coverage Results" MODIFIED="1583494633789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/vgg" />
     <SUITE FILE_PATH="coverage/dl$test.coverage" NAME="test Coverage Results" MODIFIED="1584342458129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/beyes" />
-    <SUITE FILE_PATH="coverage/dl$layers.coverage" NAME="layers Coverage Results" MODIFIED="1587389415056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/CNN" />
+    <SUITE FILE_PATH="coverage/dl$layers.coverage" NAME="layers Coverage Results" MODIFIED="1587447081354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/CNN" />
     <SUITE FILE_PATH="coverage/dl$KNN.coverage" NAME="KNN Coverage Results" MODIFIED="1584338216940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/KNN" />
     <SUITE FILE_PATH="coverage/dl$LDA.coverage" NAME="LDA Coverage Results" MODIFIED="1585493491102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/LDA" />
     <SUITE FILE_PATH="coverage/dl$sparsecode.coverage" NAME="sparsecode Coverage Results" MODIFIED="1585567536265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml" />
@@ -714,6 +740,7 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ml/CNN/test.py" />
     <entry file="file://$PROJECT_DIR$/ml/perceptron/perceptron.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -748,13 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml/CNN/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/ResNet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -784,8 +804,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ml/CNN/layers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
+        <state relative-caret-position="110">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
         </state>
       </provider>
     </entry>
