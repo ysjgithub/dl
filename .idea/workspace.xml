@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ec6e7965-684e-442c-abb8-1c98c67dd443" name="Default Changelist" comment="p3d">
+    <list default="true" id="ec6e7965-684e-442c-abb8-1c98c67dd443" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml/CNN/layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/CNN/layers.py" afterDir="false" />
     </list>
@@ -58,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ml/CNN/layers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="69" selection-start-line="69" selection-end-line="69" />
+            <state relative-caret-position="277">
+              <caret line="210" column="18" selection-start-line="210" selection-end-line="211" />
             </state>
           </provider>
         </entry>
@@ -392,7 +392,7 @@
       <workItem from="1587387204625" duration="67000" />
       <workItem from="1587387375968" duration="3191000" />
       <workItem from="1587440460489" duration="5322000" />
-      <workItem from="1587464596433" duration="5957000" />
+      <workItem from="1587464596433" duration="8290000" />
     </task>
     <task id="LOCAL-00001" summary="vgg and resnet">
       <created>1583750306955</created>
@@ -520,15 +520,28 @@
       <option name="project" value="LOCAL" />
       <updated>1587448474606</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="conv backword">
+      <created>1587476597808</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1587476597808</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fc layers">
+      <created>1587477607264</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1587477607264</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87101000" />
+    <option name="totallyTimeSpent" value="89434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14878398" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -622,7 +635,9 @@
     <MESSAGE value="flatten Maxpooling foeword" />
     <MESSAGE value="conv maxpooling mini_batch" />
     <MESSAGE value="softmax,flatten,maxpooling gradient" />
-    <option name="LAST_COMMIT_MESSAGE" value="softmax,flatten,maxpooling gradient" />
+    <MESSAGE value="conv backword" />
+    <MESSAGE value="fc layers" />
+    <option name="LAST_COMMIT_MESSAGE" value="fc layers" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dl$vgg.coverage" NAME="vgg Coverage Results" MODIFIED="1583494633789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/vgg" />
@@ -804,8 +819,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ml/CNN/layers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="277">
+          <caret line="210" column="18" selection-start-line="210" selection-end-line="211" />
         </state>
       </provider>
     </entry>

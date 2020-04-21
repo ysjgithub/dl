@@ -29,7 +29,6 @@ class Conv(object):
                 #卷积核对应一张特征图
                 featuremap = np.zeros((int(neww),int(newh)))
                 #遍历一张维度
-                print(img.shape,neww,newh)
                 for i in range(0,neww):
                     for j in range(0,newh):
                         featuremap[int(i/self.stride),int(j/self.stride)] = np.sum(img[:,i:i+self.kernel,j:j+self.kernel]*core)
@@ -37,6 +36,7 @@ class Conv(object):
             self.output_map.append(np.array(features))
         self.output_map = np.array(self.output_map)
         #输出为128 * output_channel * 10 *10
+
     def update(self,y):
         for idc in range(len(self.core)):
             #更新一个核,core 3*3*3
@@ -70,7 +70,6 @@ class Conv(object):
             img = y[idx,:,:,:] #每一张图片的特征图
             # 遍历特征图，找到每个特征图产生误差的地方
             for idf in range(len(img)):
-                feature = img[idf,:,:]
                 cores = self.core[idf,:,:,:]
                 featuremap = np.zeros((3,10, 10))
                 for idc in range(len(cores)):
@@ -79,7 +78,6 @@ class Conv(object):
                         for j in range(0, h + 2 * self.padding - self.kernel, self.stride):
                             featuremap[idc,int(i / self.stride), int(j / self.stride)] = np.sum(img[:, i:i + self.kernel, j:j + self.kernel] * newcore)
                     # 得到特征图加到误差点上
-                print(featuremap.shape)
                 self.gradient[idx,:,self.padding:-self.padding,self.padding:-self.padding]+=featuremap
         #输出大小为input_maps,去掉padding
 
@@ -87,16 +85,17 @@ class activition(object):
     def __init__(self):
         self.input_maps = []
         self.output_maps = []
+        self.gradient =None
     def forword(self,x):
         self.input_maps = x
-        self.input_maps = np.maximum(0,x)
+        self.output_maps = np.maximum(0,x)
 
     def prime(self,x):
         x[x <= 0] = 0
         x[x > 0] = 1
         return x
     def backword(self,y):
-        deltax = self.prime(y)
+        self.gradient = self.prime(y)
 
 
 
@@ -162,27 +161,31 @@ class Flattan(object):
         self.gradient= None
     def forword(self,x):
         #input 是 128 *10* 5 *5
+        print("flattan",x.shape)
         self.input_maps = x
         for maps in x:
             self.output_maps.append(maps.flatten())
         self.output_maps = np.array(self.output_maps)
         #输出是 128 * 250
     def backword(self,y):
+        print("flattan-back",y.shape)
         self.gradient = y.reshape(self.input_maps.shape)
+
 
 class FC(object):
     def __init__(self,input_nums,output_nums,bias=False):
         self.biases = np.random.rand((1,output_nums)) if bias else np.zeros((1,output_nums))
-        self.weights = np.random.randn(input_nums, output_nums) #250 * 30
+        self.weights = np.random.randn(input_nums, output_nums) # 250 * 10
         self.output_maps =None
         self.gradient =None
     def forword(self,x):
         #128 * 250
         self.input_maps= x
-        self.output_maps = np.dot(self.weights,x)+self.biases
+        self.output_maps = np.dot(x,self.weights)
 
     def update(self,y):
-        self.weights-=0.3*np.dot(self.input_maps,y.T)
+        # input 128 *250 y 128 * 10
+        self.weights-=0.3*np.dot(self.input_maps.T,y)
 
     def backword(self,y):
         # y 128 * 30
@@ -204,11 +207,11 @@ class softMax(object):
         sum = np.sum(np.exp(self.input_maps))
         self.gradient = y * (sum-y)/sum**2
         # 输出为 128*10
-        pass
 
-image = np.array(
-    [[[[_ for _ in range(10)]]*10]*3]*128
-)
+image = np.tile(np.arange(0,1,0.1),(128,3,10,1))
+
+
+
 
 #
 model = Conv(3,10,3,1,1)
@@ -220,14 +223,18 @@ print(pool1.output_maps.shape)
 f1 = Flattan()
 f1.forword(pool1.output_maps)
 print(f1.output_maps.shape)
+fc1= FC(250,10)
+fc1.forword(f1.output_maps)
+print("fc1",fc1.output_maps.shape)
 sm=softMax()
-sm.forword(f1.output_maps)
+sm.forword(fc1.output_maps)
 print(sm.output_maps.shape)
 r = sm.output_maps - 1
 print(r.shape)
 sm.backword(r)
-print(sm.gradient.shape)
-f1.backword(sm.gradient)
+print("sm.gradient",sm.gradient.shape)
+fc1.backword(sm.gradient)
+f1.backword(fc1.gradient)
 pool1.backword(f1.gradient)
 print(pool1.gradient.shape)
 model.backword(pool1.gradient)
