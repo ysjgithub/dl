@@ -8,7 +8,7 @@ class Conv(object):
         self.kernel=kernel
         self.stride=stride
         self.padding=padding
-        self.feature_map=[]
+        self.output_map=[]
         self.core = np.array([np.random.randn(3,kernel,kernel) for _ in range(output_channel)])
 
     def forword(self,x):
@@ -29,24 +29,31 @@ class Conv(object):
                     for j in range(0,h+2*self.padding-self.kernel,self.stride):
                         featuremap[int(i/self.stride),int(j/self.stride)] = np.sum(img[:,i:i+self.kernel,j:j+self.kernel]*core)
                 features.append(featuremap)
-            self.feature_map.append(np.array(features))
-        self.feature_map = np.array(self.feature_map)
+            self.output_map.append(np.array(features))
+        self.output_map = np.array(self.output_map)
         #输出为128 * output_channel * 10 *10
 
     def backword(self,y):
-        # 已知y.shape= （2，2）
+        # 输入为 output_maps，更新core的
 
         pass
+        #输出为input_maps
 
 class activition(object):
     def __init__(self):
-        self.inputMaps = []
-        self.outputMaps = []
+        self.input_maps = []
+        self.output_maps = []
     def forword(self,x):
-        self.inputMaps = x
-        self.outputMaps = np.relu(x)
+        self.input_maps = x
+        self.input_maps = np.maximum(0,x)
+
+    def prime(self,x):
+        x[x <= 0] = 0
+        x[x > 0] = 1
+        return x
     def backword(self,y):
-        assert y.shape
+        deltax = self.prime(y)
+
 
 
 # 池化层的输入是feature maps，正向传播时记录下最大点的位置
@@ -57,6 +64,7 @@ class MaxPooling(object):
         self.input_maps = None
         self.record_maps =[]
         self.output_maps = []
+        self.gradient = None
     def forword(self,x):
         # 输入大小为 128 * 10 *10 *10
         self.record_maps=np.zeros(x.shape)
@@ -79,7 +87,7 @@ class MaxPooling(object):
                         rect = feature[i:i+self.stride,j:j+self.stride]
                         # 最大点的坐标和值
                         x,y,val = self.findmax(rect)
-                        feature_record_map[i+x,j+y] = val
+                        feature_record_map[i+x,j+y] =1
                         new_feature_map[int(i // self.stride), int(j // self.stride)] = val
                 new_features.append(new_feature_map)
             maps_record_map.append(feature_record_map)
@@ -97,32 +105,43 @@ class MaxPooling(object):
 
         return x,y,val
 
-
     def backword(self,y):
-        pass
+        #input 尺寸为 10 * 5 * 5,recordmap尺寸为128 *10*5*5
+        y = np.repeat(np.repeat(y,self.stride,axis=2),self.stride,axis=3)
+        self.gradient = y*self.record_maps
 
 
 class Flattan(object):
     def __init__(self):
-        self.inputMaps = []
-        self.outputMaps = []
+        self.input_maps = []
+        self.output_maps = []
+        self.gradient= None
     def forword(self,x):
+        #input 是 128 *10* 5 *5
+        self.input_maps = x
         for maps in x:
-            self.outputMaps.append(maps.flatten())
+            self.output_maps.append(maps.flatten())
+        self.output_maps = np.array(self.output_maps)
+        #输出是 128 * 250
+    def backword(self,y):
+        self.gradient = y.reshape(self.input_maps.shape)
 
-    def backword(self):
-        pass
 
 class softMax(object):
     def __init__(self):
-        self.inputMaps = None
-        self.outputMaps = None
+        self.input_maps = None
+        self.output_maps = None
+        self.gradient = None
     def forword(self,x):
-        self.inputMaps = x
+        # 输入为 128 * 10
+        self.input_maps = x
         sum = np.sum(np.exp(x))
-        self.outputMaps = x/sum
+        self.output_maps = x/sum
     def backword(self,y):
-        # 一个梯度，对应上一层的数据
+        # 一个梯度，对应上一层的数据，输入为128 * 10
+        sum = np.sum(np.exp(self.input_maps))
+        self.gradient = y * (sum-y)/sum**2
+        # 输出为 128*10
         pass
 
 image = np.array(
@@ -132,9 +151,21 @@ image = np.array(
 #
 model = Conv(3,10,3,1,1)
 model.forword(image)
-print(model.feature_map.shape)
+print(model.output_map.shape)
 pool1 = MaxPooling(2,2)
-pool1.forword(model.feature_map)
+pool1.forword(model.output_map)
 print(pool1.output_maps.shape)
+f1 = Flattan()
+f1.forword(pool1.output_maps)
+print(f1.output_maps.shape)
+sm=softMax()
+sm.forword(f1.output_maps)
+print(sm.output_maps.shape)
+r = sm.output_maps - 1
+print(r.shape)
+sm.backword(r)
+print(sm.gradient.shape)
+f1.backword(sm.gradient)
+pool1.backword(f1.gradient)
 
 
