@@ -8,16 +8,16 @@ class Conv(object):
         self.kernel=kernel
         self.stride=stride
         self.padding=padding
-        self.output_map=[]
-        self.core = np.array([np.random.randn(3,kernel,kernel) for _ in range(output_channel)])
+        self.output_maps=[]
+        self.core = np.array([np.random.randn(input_channel,kernel,kernel) for _ in range(output_channel)])
         self.gradient =None
         self.input_maps = None
         self.delta = None
     def forword(self,x):
         # 输入为 128 * 3 * 10 *10
+        self.input_maps = x
         if self.padding != 0:
             x = np.pad(x, ((0, 0), (0, 0), (self.padding, self.padding), (self.padding, self.padding)), 'constant')
-        self.input_maps = x
         self.delta = np.zeros(x.shape)
         mini_batch,c,w,h = x.shape
         neww,newh = int((w-self.kernel)/self.stride+1),int((h-self.kernel)/self.stride+1)
@@ -31,13 +31,17 @@ class Conv(object):
                 #遍历一张维度
                 for i in range(0,neww):
                     for j in range(0,newh):
-                        featuremap[int(i/self.stride),int(j/self.stride)] = np.sum(img[:,i:i+self.kernel,j:j+self.kernel]*core)
+                        featuremap[int(i/self.stride),int(j/self.stride)] = np.mean(img[:,i:i+self.kernel,j:j+self.kernel]*core)
                 features.append(featuremap)
-            self.output_map.append(np.array(features))
-        self.output_map = np.array(self.output_map)
+            self.output_maps.append(np.array(features))
+        self.output_maps = np.array(self.output_maps)
         #输出为128 * output_channel * 10 *10
 
     def update(self,y):
+        # 更新权值要用到所有参与卷积的点，需要使用padding后的图像
+        mini_batch,output_channel,w,h = y.shape
+        if self.padding != 0:
+            x = np.pad(self.input_maps, ((0, 0), (0, 0), (self.padding, self.padding), (self.padding, self.padding)), 'constant')
         for idc in range(len(self.core)):
             #更新一个核,core 3*3*3
             core = self.core[idc,:,:,:]
@@ -52,33 +56,36 @@ class Conv(object):
                     for i in range(3):
                         for j in range(3):
                             for seq in range(self.input_channel):
-                                deltacore[seq,i,j] += np.sum(self.input_maps[idf,seq,i:i + 10, j:j + 10] * feature)
+                                deltacore[seq,i,j] += np.mean(x[idf,seq,i:i + w, j:j + h] * feature)
             deltacore=deltacore/len(y)
-            self.core[idc,:,:,:]-=deltacore*0.3
+            self.core[idc,:,:,:]+=deltacore*3
 
     def backword(self,y):
         # 输入为 output_maps，更新core的
         # 输入为 128 * 10 * 10 *10
+        # 计算输入点产生的误差
         self.update(y)
         mini_batch, c, w, h = y.shape
+        mini_batch, ic, iw, ih = self.input_maps.shape
 
         if self.padding != 0:
             y = np.pad(y, ((0, 0), (0, 0), (self.padding, self.padding), (self.padding, self.padding)), 'constant')
         self.gradient = np.zeros(self.input_maps.shape)
         # 图片
         for idx in range(mini_batch):
-            img = y[idx,:,:,:] #每一张图片的特征图
+            img = y[idx,:,:,:] #每一张图片的特征图 64 *7*7
             # 遍历特征图，找到每个特征图产生误差的地方
             for idf in range(len(img)):
-                cores = self.core[idf,:,:,:]
-                featuremap = np.zeros((3,10, 10))
+                cores = self.core[idf,:,:,:] # 32 * 3 * 3
+                featuremap = np.zeros((ic,iw,ih)) # 32 * 7 * 7
                 for idc in range(len(cores)):
-                    newcore = cores[idc,:,:].T[::-1].T[::-1]
+                    newcore = cores[idc,:,:].T[::-1].T[::-1] #3*3
                     for i in range(0, w + 2 * self.padding - self.kernel, self.stride):
                         for j in range(0, h + 2 * self.padding - self.kernel, self.stride):
-                            featuremap[idc,int(i / self.stride), int(j / self.stride)] = np.sum(img[:, i:i + self.kernel, j:j + self.kernel] * newcore)
+                            featuremap[idc,int(i / self.stride), int(j / self.stride)] = np.mean(img[:, i:i + self.kernel, j:j + self.kernel] * newcore)
                     # 得到特征图加到误差点上
-                self.gradient[idx,:,self.padding:-self.padding,self.padding:-self.padding]+=featuremap
+                self.gradient[idx,:,:,:]+=featuremap
+        self.output_maps =[]
         #输出大小为input_maps,去掉padding
 
 class activition(object):
@@ -110,7 +117,7 @@ class MaxPooling(object):
         self.gradient = None
     def forword(self,x):
         # 输入大小为 128 * 10 *10 *10
-        self.record_maps=np.zeros(x.shape)
+        self.record_maps=[]
         self.input_maps = x
 
         for maps in x:
@@ -133,9 +140,11 @@ class MaxPooling(object):
                         feature_record_map[i+x,j+y] =1
                         new_feature_map[int(i // self.stride), int(j // self.stride)] = val
                 new_features.append(new_feature_map)
-            maps_record_map.append(feature_record_map)
+                maps_record_map.append(feature_record_map)
             self.output_maps.append(new_features)
+            self.record_maps.append(maps_record_map)
         self.output_maps = np.array(self.output_maps)
+        self.record_maps = np.array(self.record_maps)
         #输出大小为 128 * 10 * 5 * 5
 
     def findmax(self,rect):
@@ -151,7 +160,10 @@ class MaxPooling(object):
     def backword(self,y):
         #input 尺寸为 10 * 5 * 5,recordmap尺寸为128 *10*5*5
         y = np.repeat(np.repeat(y,self.stride,axis=2),self.stride,axis=3)
+        resshape = np.array(self.input_maps.shape) - np.array(y.shape)
+        y = np.pad(y,((0,resshape[0]),(0,resshape[1]),(0,resshape[2]),(0,resshape[3])),'constant')
         self.gradient = y*self.record_maps
+        self.output_maps = []
 
 
 class Flattan(object):
@@ -161,7 +173,6 @@ class Flattan(object):
         self.gradient= None
     def forword(self,x):
         #input 是 128 *10* 5 *5
-        print("flattan",x.shape)
         self.input_maps = x
         for maps in x:
             self.output_maps.append(maps.flatten())
@@ -170,22 +181,25 @@ class Flattan(object):
     def backword(self,y):
         print("flattan-back",y.shape)
         self.gradient = y.reshape(self.input_maps.shape)
+        self.output_maps = []
 
 
 class FC(object):
     def __init__(self,input_nums,output_nums,bias=False):
-        self.biases = np.random.rand((1,output_nums)) if bias else np.zeros((1,output_nums))
+        self.biases = np.random.randn((1,output_nums)) if bias else np.zeros((1,output_nums))
         self.weights = np.random.randn(input_nums, output_nums) # 250 * 10
         self.output_maps =None
         self.gradient =None
     def forword(self,x):
         #128 * 250
+        # print(x)
         self.input_maps= x
         self.output_maps = np.dot(x,self.weights)
 
     def update(self,y):
         # input 128 *250 y 128 * 10
-        self.weights-=0.3*np.dot(self.input_maps.T,y)
+        # print(np.dot(self.input_maps.T,y))
+        self.weights+=0.3*np.dot(self.input_maps.T,y)
 
     def backword(self,y):
         # y 128 * 30
@@ -200,43 +214,56 @@ class softMax(object):
     def forword(self,x):
         # 输入为 128 * 10
         self.input_maps = x
-        sum = np.sum(np.exp(x))
-        self.output_maps = x/sum
+        sum = np.sum(np.exp(x),axis=1).reshape((2,1))
+        self.output_maps = np.exp(x)/sum
     def backword(self,y):
         # 一个梯度，对应上一层的数据，输入为128 * 10
         sum = np.sum(np.exp(self.input_maps))
         self.gradient = y * (sum-y)/sum**2
         # 输出为 128*10
 
-image = np.tile(np.arange(0,1,0.1),(128,3,10,1))
+
+class Model(object):
+    def __init__(self,seq):
+        self.sequential = seq
+    def forword(self,x):
+        o = x
+        for i in range(len(self.sequential)):
+            l=self.sequential[i]
+            l.forword(o)
+            o=l.output_maps
+        return o
+
+    def backword(self,y):
+        g = y
+        for i in range(len(self.sequential)-1,-1,-1):
+            l = self.sequential[i]
+            l.backword(g)
+            g = l.gradient
+
+x1 = np.arange(0,1,0.1)
+x2 = np.arange(0.9,-0.1,-0.1)
+assert x1.shape ==x2.shape
+image = np.concatenate([np.tile(x1,(1,3,10,1)),np.tile(x2,(1,3,10,1))])-0.5
+label=np.array([[1,0],[0,1]])
+
+model = Model([
+        Conv(3,8,3,1,1),
+        activition(),
+        MaxPooling(2,2),
+        Conv(8,16,3,1,1),
+        activition(),
+        MaxPooling(2,2),
+        Flattan(),
+        FC(64,2),
+        activition(),
+        softMax()
+    ])
+for i in range(20):
+    s = model.forword(image)
+    print("result",s)
+    model.backword(label)
 
 
-
-
-#
-model = Conv(3,10,3,1,1)
-model.forword(image)
-print(model.output_map.shape)
-pool1 = MaxPooling(2,2)
-pool1.forword(model.output_map)
-print(pool1.output_maps.shape)
-f1 = Flattan()
-f1.forword(pool1.output_maps)
-print(f1.output_maps.shape)
-fc1= FC(250,10)
-fc1.forword(f1.output_maps)
-print("fc1",fc1.output_maps.shape)
-sm=softMax()
-sm.forword(fc1.output_maps)
-print(sm.output_maps.shape)
-r = sm.output_maps - 1
-print(r.shape)
-sm.backword(r)
-print("sm.gradient",sm.gradient.shape)
-fc1.backword(sm.gradient)
-f1.backword(fc1.gradient)
-pool1.backword(f1.gradient)
-print(pool1.gradient.shape)
-model.backword(pool1.gradient)
 
 
