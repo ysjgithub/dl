@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec6e7965-684e-442c-abb8-1c98c67dd443" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/Conv.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/Flattan.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/FullConnect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/MaxPooling.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/Model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/Relu.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/SoftMax.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/CNN/layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/CNN/layers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/CNN/layers/conv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConvlutionalNetworks/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ConvlutionalNetworks/__init__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,15 +17,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ml/CNN/layers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4165">
+            <state relative-caret-position="15">
               <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitmodules">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/ConvlutionalNetworks/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -60,7 +55,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ConvlutionalNetworks" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -78,7 +73,6 @@
         <option value="$PROJECT_DIR$/ml/beyes/beyes.py" />
         <option value="$PROJECT_DIR$/ml/logisticregerssion/logistic.py" />
         <option value="$PROJECT_DIR$/model/VGG.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/model/ResNet.py" />
         <option value="$PROJECT_DIR$/ml/LDA/LDA.py" />
         <option value="$PROJECT_DIR$/model/稀疏自编码.py" />
@@ -100,9 +94,10 @@
         <option value="$PROJECT_DIR$/layers/Conv.py" />
         <option value="$PROJECT_DIR$/layers/__init__.py" />
         <option value="$PROJECT_DIR$/Convlutional-Networks/__init__.py" />
-        <option value="$PROJECT_DIR$/ConvlutionalNetworks/__init__.py" />
         <option value="$PROJECT_DIR$/ml/CNN/model.py" />
         <option value="$PROJECT_DIR$/.gitmodules" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/ConvlutionalNetworks/__init__.py" />
       </list>
     </option>
   </component>
@@ -110,7 +105,7 @@
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
@@ -134,6 +129,11 @@
               <item name="dl" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/PycharmProjects/dl" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
+            <path>
+              <item name="dl" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/PycharmProjects/dl" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="ConvlutionalNetworks" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -154,6 +154,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -400,6 +401,7 @@
       <workItem from="1587868235496" duration="7518000" />
       <workItem from="1587955777601" duration="5111000" />
       <workItem from="1587979338839" duration="3234000" />
+      <workItem from="1587982876681" duration="425000" />
     </task>
     <task id="LOCAL-00001" summary="vgg and resnet">
       <created>1583750306955</created>
@@ -580,12 +582,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154532000" />
+    <option name="totallyTimeSpent" value="154957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4983108" visible="true" weight="0.17238913" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4983108" visible="true" weight="0.17453505" />
       <window_info id="Structure" order="1" sideWeight="0.5016892" side_tool="true" weight="0.15522175" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -599,7 +602,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.24819277" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2879518" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.28674698" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.18674698" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -806,16 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ml/logisticregerssion/logistic.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -867,13 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/VGG.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1590">
@@ -895,96 +881,19 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/ml/CNN/test.py" />
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/SoftMax.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ml/CNN/layers/layers/Conv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="58" column="11" lean-forward="true" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ml/CNN/layers/__init__.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ml/CNN/layers/layers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ss/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/FullConnect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/Relu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/MaxPooling.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/Conv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/Flattan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ss/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/SoftMax.py" />
+    <entry file="file://$PROJECT_DIR$/ml/CNN/layers/layers/Conv.py" />
+    <entry file="file://$PROJECT_DIR$/ml/CNN/layers/__init__.ipynb" />
+    <entry file="file://$PROJECT_DIR$/ml/CNN/layers/layers/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/Model.py" />
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/FullConnect.py" />
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/Relu.py" />
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/README.md" />
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/MaxPooling.py" />
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/Conv.py" />
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/Flattan.py" />
+    <entry file="file://$PROJECT_DIR$/ss/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/C1onvlutionalNetworks/__init__.py" />
     <entry file="file://$PROJECT_DIR$/ml/CNN/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-58">
@@ -995,15 +904,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml/CNN/layers.py">
+    <entry file="file://$PROJECT_DIR$/Resnet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4165">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        <state relative-caret-position="-850">
+          <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitmodules">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml/CNN/layers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConvlutionalNetworks/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
