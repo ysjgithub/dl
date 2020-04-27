@@ -277,7 +277,7 @@ test_loader = DataLoader(
 def one_hot(x, K):
     return np.array(x[:, None] == np.arange(K)[None, :], dtype=int)
 
-def test():
+def mytest():
     correct = 0
     for x,y in test_loader:
         x = x.numpy()
@@ -290,7 +290,6 @@ def test():
 iter = 0
 for i in range(2):
     for x,y in train_loader:
-        print(iter)
         iter+=1
         x = x.numpy()
         y = one_hot(np.array(y.numpy()),10)
@@ -300,7 +299,7 @@ for i in range(2):
         print(np.sum(np.argmax(y,axis=1)==np.argmax(s,axis=1)))
         model.backword(r)
         if iter%1000 == 0:
-            test()
+            mytest()
 
 
 
