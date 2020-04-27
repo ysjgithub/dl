@@ -3,8 +3,8 @@ import numpy as np
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
-from C1onvlutionalNetworks import FC
-from C1onvlutionalNetworks.ConvlutionalNetworks import Conv, Flattan, MaxPooling, SoftMax, Relu, Model
+from ConvlutionalNetworks import FC
+from ConvlutionalNetworks import Conv, Flattan, MaxPooling, SoftMax, Relu, Model
 
 
 def MSE(y,t):
