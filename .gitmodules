@@ -1,6 +1,0 @@
-[submodule "layers/Convlutional-Networks"]
-	path = layers/Convlutional-Networks
-	url = https://github.com/ysjgithub/Convlutional-Networks.git
-[submodule "ConvlutionalNetworks/ConvlutionalNetworks"]
-	path = ConvlutionalNetworks/ConvlutionalNetworks
-	url = https://github.com/ysjgithub/ConvlutionalNetworks.git

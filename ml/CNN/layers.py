@@ -13,54 +13,44 @@ class Conv(object):
         self.stride=stride
         self.padding=padding
         self.output_maps=[]
-        self.core = np.array([np.random.randn(input_channel,kernel,kernel) for _ in range(output_channel)])
+        self.core = np.random.randn(output_channel,input_channel,kernel,kernel)*np.sqrt(2/(input_channel))
         self.gradient =None
         self.input_maps = None
     def forword(self,x):
         # 输入为 128 * 3 * 10 *10
+        self.output_maps =[]
         self.input_maps = x
         x = np.pad(x, ((0, 0), (0, 0), (self.padding, self.padding), (self.padding, self.padding)), 'constant')
         mini_batch,c,w,h = x.shape
         neww,newh = int((w-self.kernel)/self.stride+1),int((h-self.kernel)/self.stride+1)
 
         self.output_maps = np.zeros((mini_batch,self.output_channel,neww,newh))
-        for idc in range(self.output_channel):
-            core = self.core[idc,:,:,:]
-            #卷积核对应mini_batch张特征图
-            featuremap = np.zeros((mini_batch,neww,newh))
 
-            for i in range(neww):
-                for j in range(newh):
-                    newfeaturemap = np.sum(x[:,:,i:i+self.kernel,j:j+self.kernel] * core,axis=(1,2,3)).reshape((1,mini_batch))
-                    featuremap[:,i,j] = newfeaturemap
+        x = x.reshape(mini_batch,1,self.input_channel,w,h)
+        x = np.repeat(x,self.output_channel,axis=1)
 
-        self.output_maps[:,idc,:,:] = featuremap
+        for i in range(neww):
+            for j in range(newh):
+                self.output_maps[:,:,i,j] = np.sum(x[:,:,:,i:i+self.kernel,j:j+self.kernel] * self.core,axis=(2,3,4)).reshape((mini_batch,self.output_channel))
         #输出为128 * output_channel * 10 *10
 
     def update(self,y):
         # 更新权值要用到所有参与卷积的点，需要使用padding后的图像
         mini_batch,output_channel,w,h = y.shape
         x = np.pad(self.input_maps, ((0, 0), (0, 0), (self.padding, self.padding), (self.padding, self.padding)), 'constant')
-
+        mini_batch,input_channel,iw,ih  = x.shape
         # 16 * 9 * 9
-        for idc in range(self.output_channel):
-            #更新一个核,core input_channel * 3 * 3,使用一组特征图
-            core = self.core[idc,:,:,:]
-            deltacore = np.zeros(core.shape)
+        x=x.reshape(mini_batch,1,input_channel,iw,ih).repeat(self.output_channel,axis=1)
+        y=y.reshape(mini_batch,output_channel,1,w,h).repeat(self.input_channel,axis=2)
 
-            # 一个mini_batch的梯度加起来
-            feature = y[:,idc,:,:].reshape((mini_batch,1,w,h))
-            assert feature.shape==(mini_batch,1,w,h)
-            feature = np.repeat(feature,self.input_channel,axis=1)
-            assert feature.shape==(mini_batch,self.input_channel,w,h)
+        deltacore=np.zeros(self.core.shape)
 
-            # 影响的对象只有一张图,features 7 * 7
-
-            for i in range(self.kernel):
-                for j in range(self.kernel):
-                    zz= x[:,:,i:i + w, j:j + h] * feature
-                    deltacore[:,i,j] += np.sum(zz,axis=(0,2,3))/mini_batch
-            self.core[idc,:,:,:]-=deltacore*0.005
+        for i in range(self.kernel):
+            for j in range(self.kernel):
+                zz= x[:,:,:,i:i + w, j:j + h] * y
+                deltacore[:,:,i,j] += np.sum(zz,axis=(0,3,4)).reshape((output_channel,input_channel))/mini_batch
+        print(deltacore.mean())
+        self.core-=deltacore*0.005
 
     def backword(self,m):
         # 输入为 output_maps，更新core的
@@ -70,27 +60,21 @@ class Conv(object):
         mini_batch, ic, iw, ih = self.input_maps.shape
         y = np.pad(y, ((0, 0), (0, 0), (self.padding, self.padding), (self.padding, self.padding)), 'constant')
         self.gradient = np.zeros(self.input_maps.shape)
-        newcore = np.zeros((self.input_channel,self.output_channel,self.kernel,self.kernel))
 
-        for i in range(self.input_channel):
-            for j in range(self.output_channel):
-                newcore[i,j,:,:] = self.core[j,i,:,:].T[::-1].T[::-1]
+        newcore = np.zeros((self.output_channel,self.input_channel,self.kernel,self.kernel))
+        for i in range(self.output_channel):
+            for j in range(self.input_channel):
+                newcore[i,j,:,:] = self.core[i,j,:,:].T[::-1].T[::-1]
 
-        for idc in range(self.input_channel):
-            core = newcore[idc,:,:,:]
+        mini_batch,output_channel,w,h = y.shape
+        y = y.reshape((mini_batch,self.output_channel,1,w,h)).repeat(self.input_channel,axis=2)
 
-            # 卷积核对应mini_batch张特征图
-            featuremap = np.zeros((mini_batch, iw, ih))
-
-            for i in range(iw):
-                for j in range(ih):
-                    newfeaturemap = np.sum(y[:, :, i:i + self.kernel, j:j + self.kernel] * core,axis=(1, 2, 3)).reshape((1, mini_batch))
-                    featuremap[:, int(i / self.stride), int(j / self.stride)] = newfeaturemap
-
-            self.gradient[:, idc, :, :] = featuremap
+        for i in range(iw):
+            for j in range(ih):
+                newfeaturemap = np.sum(y[:, :,:, i:i + self.kernel, j:j + self.kernel] * newcore,axis=(1, 3, 4)).reshape((mini_batch, self.input_channel))
+                self.gradient[:,:,i,j] = newfeaturemap
 
         self.update(m)
-        self.output_maps =[]
         #输出大小为input_maps,去掉padding
 
 
@@ -108,6 +92,7 @@ class MaxPooling(object):
         self.gradient = None
     def forword(self,x):
         # 输入大小为 128 * 10 *10 *10
+        self.output_maps = []
         self.record_maps=[]
         self.input_maps = x
 
@@ -152,7 +137,6 @@ class MaxPooling(object):
         resshape = np.array(self.input_maps.shape) - np.array(y.shape)
         y = np.pad(y,((0,resshape[0]),(0,resshape[1]),(0,resshape[2]),(0,resshape[3])),'constant')
         self.gradient = y*self.record_maps
-        self.output_maps = []
 
 
 class Flattan(object):
@@ -162,6 +146,7 @@ class Flattan(object):
         self.gradient= None
     def forword(self,x):
         #input 是 128 *10* 5 *5
+        self.output_maps = []
         self.input_maps = x
         for maps in x:
             self.output_maps.append(maps.flatten())
@@ -170,13 +155,12 @@ class Flattan(object):
     def backword(self,y):
         # t = time.time()
         self.gradient = y.reshape(self.input_maps.shape)
-        self.output_maps = []
 
 
 
 class FC(object):
     def __init__(self,input_nums,output_nums,bias=False):
-        self.weights = np.random.randn(input_nums, output_nums)/np.sqrt(input_nums / 2) # 250 * 10
+        self.weights = np.random.randn(input_nums, output_nums)*np.sqrt(2/input_nums) # 250 * 10
         self.output_maps =None
         self.gradient =None
 
@@ -272,7 +256,6 @@ model = Model([
     ])
 
 
-
 transform_train = transforms.Compose([
     transforms.RandomCrop(28, padding=4),
     transforms.ToTensor(),
@@ -282,29 +265,42 @@ transform_test = transforms.Compose([
 ])
 
 train_loader = DataLoader(
-    datasets.MNIST(root='.data/mnist', train=True, download=True, transform=transform_train), batch_size=20,
+    datasets.MNIST(root='../.data/mnist', train=True, download=True, transform=transform_train), batch_size=20,
     shuffle=True, num_workers=2, drop_last=True
 )
 
 test_loader = DataLoader(
-    datasets.MNIST(root='.data/mnist', train=False, download=True, transform=transform_test),
-    batch_size=11, shuffle=False, num_workers=2, drop_last=True
+    datasets.MNIST(root='../.data/mnist', train=False, download=True, transform=transform_test),
+    batch_size=100, shuffle=False, num_workers=2, drop_last=True
 )
 
 def one_hot(x, K):
     return np.array(x[:, None] == np.arange(K)[None, :], dtype=int)
 
+def test():
+    correct = 0
+    for x,y in test_loader:
+        x = x.numpy()
+        y = one_hot(np.array(y.numpy()),10)
+        s = model.forword(x)
+        correct+=np.sum(np.argmax(y,axis=1)==np.argmax(s,axis=1))
+    print("test_correct",correct)
+
+
 iter = 0
 for i in range(2):
     for x,y in train_loader:
+        print(iter)
         iter+=1
         x = x.numpy()
         y = one_hot(np.array(y.numpy()),10)
         s = model.forword(x)
         r = MSE(s,y)
-        print(iter,np.argmax(y,axis=1),np.argmax(s,axis=1))
+        print(np.argmax(y,axis=1),np.argmax(s,axis=1))
         print(np.sum(np.argmax(y,axis=1)==np.argmax(s,axis=1)))
         model.backword(r)
+        if iter%1000 == 0:
+            test()
 
 
 
